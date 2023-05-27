@@ -11,27 +11,39 @@ const NavLeftSide = styled.ul`
   align-content: center;
   align-items: center;
 `;
-
+const ExternalLink = styled.a`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.textColor};
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.7em;
+`;
 const LeftSideMenu = () => {
-    const { data } = useGetUserDataQuery();
-    if (!data) return null;
+  const { data } = useGetUserDataQuery();
+  if (!data) return null;
 
-    return (
-        <NavLeftSide>
-            <Link to="./">
-                <Logo size={ "150px" }/>
-            </Link>
-            <ListItem>
-                <StyledLink to="./">Tracked page: { data.project }</StyledLink>
-            </ListItem>
-            <ListItem>
-                <StyledLink to="./">Blog</StyledLink>
-            </ListItem>
-            <ListItem>
-                <StyledLink to="./">Help</StyledLink>
-            </ListItem>
-        </NavLeftSide>
-    );
+  return (
+    <NavLeftSide>
+      <Link to='./'>
+        <Logo size={"150px"} />
+      </Link>
+      <ListItem>
+        <StyledLink to='./'>Tracked page: {data.project}</StyledLink>
+      </ListItem>
+      <ListItem>
+        <ExternalLink
+          href='https://trail-landing-page.vercel.app/blog'
+          title='Blog'
+        >
+          Blog
+        </ExternalLink>
+      </ListItem>
+      <ListItem>
+        <StyledLink to='./'>Help</StyledLink>
+      </ListItem>
+    </NavLeftSide>
+  );
 };
 
 export default LeftSideMenu;
